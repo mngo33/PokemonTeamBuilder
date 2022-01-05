@@ -1,38 +1,106 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  padding-top: 4rem;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  padding-bottom: 4rem;
+}
+
+.divider {
+  padding-top: 1rem;
+}
+
+.navbar.bg-light {
+  background-color: #ef5350 !important;
+}
+
+.poke-card {
+  padding: 0rem 0;
+  width: 100%;
+}
+.poke-card:hover {
+  animation: jump 0.4s linear infinite;
+  animation-iteration-count: infinite;
+}
+
+.poke-btn {
+  width: 6rem;
+  height: 6rem;
+  padding: 0;
+}
+
+.pokeball {
+  -moz-transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+  -o-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  transform: scale(0.5);
+}
+
+.info-button {
+  line-height: 12px;
+  width: 18px;
+  font-size: 8pt;
+  font-family: tahoma;
+  margin-top: 1px;
+  margin-right: 2px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.info-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: x-small;
+  margin-top: 0;
+  padding: 0;
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 50%;
   align-items: center;
+}
+
+.try-center {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.try-right {
+  display: flex;
+  justify-content: end;
+  padding: 0;
+  margin-left: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.parent {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.child {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 92%;
+}
+
+.searchbox {
+  float: right;
+}
+
+#dropdown-basic {
+  background-color: #a73533 !important;
+  border: 0;
+}
+
+@keyframes jump {
+  0%,
+  100% {
+    padding: 0.26rem 0 0 0;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    padding: 0 0 0.26rem 0;
   }
 }
