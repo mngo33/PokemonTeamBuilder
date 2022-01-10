@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/PokemonTeamBuilder/static/css/main.ca354e6c.css",
+    "main.js": "/PokemonTeamBuilder/static/js/main.a8a1e493.js",
+    "static/js/787.b4531a9c.chunk.js": "/PokemonTeamBuilder/static/js/787.b4531a9c.chunk.js",
+    "static/media/pokeball-sprite.png": "/PokemonTeamBuilder/static/media/pokeball-sprite.90ad883a59bbb363de64.png",
+    "index.html": "/PokemonTeamBuilder/index.html",
+    "main.ca354e6c.css.map": "/PokemonTeamBuilder/static/css/main.ca354e6c.css.map",
+    "main.a8a1e493.js.map": "/PokemonTeamBuilder/static/js/main.a8a1e493.js.map",
+    "787.b4531a9c.chunk.js.map": "/PokemonTeamBuilder/static/js/787.b4531a9c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ca354e6c.css",
+    "static/js/main.a8a1e493.js"
+  ]
+}
