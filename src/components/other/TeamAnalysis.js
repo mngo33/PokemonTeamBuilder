@@ -1,7 +1,28 @@
 import React, { useState, useEffect } from "react";
 import PokemonCard from "../pokemon/PokemonCard";
-import { Col, Container, Row } from "react-bootstrap";
+import { Badge, Card, Col, ProgressBar, Row } from "react-bootstrap";
 import axios from "axios";
+
+const TYPE_COLOURS = {
+  normal: "#A8A77A",
+  fire: "#EE8130",
+  water: "#6390F0",
+  electric: "#F7D02C",
+  grass: "#7AC74C",
+  ice: "#96D9D6",
+  fighting: "#C22E28",
+  poison: "#A33EA1",
+  ground: "#E2BF65",
+  flying: "#A98FF3",
+  psychic: "#F95587",
+  bug: "#A6B91A",
+  rock: "#B6A136",
+  ghost: "#735797",
+  dragon: "#6F35FC",
+  dark: "#705746",
+  steel: "#B7B7CE",
+  fairy: "#D685AD",
+};
 
 function TeamAnalysis({ team }) {
   const [newTypes1, setNewTypes1] = useState([]);
@@ -11,7 +32,7 @@ function TeamAnalysis({ team }) {
   const [resistances, setResistances] = useState([]);
 
   useEffect(() => {
-    team.forEach(getPokemonTypeInfo)
+    team.forEach(getPokemonTypeInfo);
   }, []);
 
   const getPokemonTypeInfo = async (pokemon) => {
@@ -91,16 +112,29 @@ function TeamAnalysis({ team }) {
       ),
     ];
 
-    let filteredWeaknesses = unfilteredWeaknesses.filter((x) => !unfilteredImmunities.includes(x));
-    filteredWeaknesses = filteredWeaknesses.filter((x) => !unfilteredResistances.includes(x));
+    let filteredWeaknesses = unfilteredWeaknesses.filter(
+      (x) => !unfilteredImmunities.includes(x)
+    );
+    filteredWeaknesses = filteredWeaknesses.filter(
+      (x) => !unfilteredResistances.includes(x)
+    );
 
-    let filteredResistances = unfilteredResistances.filter((x) => !unfilteredWeaknesses.includes(x));
-    filteredResistances = filteredResistances.filter((x) => !unfilteredImmunities.includes(x));
+    let filteredResistances = unfilteredResistances.filter(
+      (x) => !unfilteredWeaknesses.includes(x)
+    );
+    filteredResistances = filteredResistances.filter(
+      (x) => !unfilteredImmunities.includes(x)
+    );
+
+    let newCoverages = coverages;
+    newCoverages.push(...updatedCoverages);
+    newCoverages = [...new Set(newCoverages)];
+    setCoverages(newCoverages);
 
     let newWeaknesses = weaknesses;
     newWeaknesses.push(...filteredWeaknesses);
     newWeaknesses = [...new Set(newWeaknesses)];
-    newWeaknesses = newWeaknesses.filter(x => !resistances.includes(x));
+    newWeaknesses = newWeaknesses.filter((x) => !coverages.includes(x));
     setWeaknesses(newWeaknesses);
 
     let newResistances = resistances;
@@ -112,12 +146,6 @@ function TeamAnalysis({ team }) {
     newImmunities.push(...unfilteredImmunities);
     newImmunities = [...new Set(newImmunities)];
     setImmunities(newImmunities);
-
-    let newCoverages = coverages;
-    newCoverages.push(...updatedCoverages);
-    newCoverages = [...new Set(newCoverages)];
-    setCoverages(newCoverages);
-    
   };
 
   return (
@@ -142,10 +170,94 @@ function TeamAnalysis({ team }) {
       <Row>
         <Col>
           <h1>Team</h1>
-          <h5>Coverages: {coverages}</h5>
-          <h5>Uncovered Weaknesses: {weaknesses.join()}</h5>
-          <h5>Resistances: {resistances}</h5>
-          <h5>Immunities: {immunities}</h5>
+          <h5>
+            Coverages:{" "}
+            {coverages.map((type) => (
+              <Badge
+                key={type}
+                pill
+                className="mr-1 p-2"
+                bg={TYPE_COLOURS[type.toLowerCase()]}
+                color="white"
+                style={{
+                  backgroundColor: `${TYPE_COLOURS[type.toLowerCase()]}`,
+                  color: "white",
+                }}
+              >
+                {type
+                  .toLowerCase()
+                  .split("-")
+                  .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+                  .join(" ")}
+              </Badge>
+            ))}
+          </h5>
+          <h5>
+            Uncovered Weaknesses:{" "}
+            {weaknesses.map((type) => (
+              <Badge
+                key={type}
+                pill
+                className="mr-1 p-2"
+                bg={TYPE_COLOURS[type.toLowerCase()]}
+                color="white"
+                style={{
+                  backgroundColor: `${TYPE_COLOURS[type.toLowerCase()]}`,
+                  color: "white",
+                }}
+              >
+                {type
+                  .toLowerCase()
+                  .split("-")
+                  .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+                  .join(" ")}
+              </Badge>
+            ))}
+          </h5>
+          <h5>
+            Resistances:{" "}
+            {resistances.map((type) => (
+              <Badge
+                key={type}
+                pill
+                className="mr-1 p-2"
+                bg={TYPE_COLOURS[type.toLowerCase()]}
+                color="white"
+                style={{
+                  backgroundColor: `${TYPE_COLOURS[type.toLowerCase()]}`,
+                  color: "white",
+                }}
+              >
+                {type
+                  .toLowerCase()
+                  .split("-")
+                  .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+                  .join(" ")}
+              </Badge>
+            ))}
+          </h5>
+          <h5>
+            Immunities:{" "}
+            {immunities.map((type) => (
+              <Badge
+                key={type}
+                pill
+                className="mr-1 p-2"
+                bg={TYPE_COLOURS[type.toLowerCase()]}
+                color="white"
+                style={{
+                  backgroundColor: `${TYPE_COLOURS[type.toLowerCase()]}`,
+                  color: "white",
+                }}
+              >
+                {type
+                  .toLowerCase()
+                  .split("-")
+                  .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+                  .join(" ")}
+              </Badge>
+            ))}
+          </h5>
         </Col>
       </Row>
     </div>

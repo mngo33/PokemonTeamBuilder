@@ -27,6 +27,10 @@ const generations = [
     id: 6,
     name: "Generation VI",
   },
+  {
+    id: 7,
+    name: "Generation VII"
+  }
 ];
 
 const types = [

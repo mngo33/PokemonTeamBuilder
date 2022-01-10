@@ -6,7 +6,7 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
   const [team, setTeam] = useState([]);
 
   const getAllPokemon = async () => {
-    const URL = "https://pokeapi.co/api/v2/pokemon?limit=50";
+    const URL = "https://pokeapi.co/api/v2/pokemon?limit=721";
 
     const response = await fetch(URL);
     const data = await response.json();
@@ -68,7 +68,7 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
     } else if (id < 721) {
       return 6;
     } else {
-      return 8;
+      return 7;
     }
   };
 
