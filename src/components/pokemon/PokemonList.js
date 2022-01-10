@@ -25,7 +25,7 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
   };
 
   useEffect(() => {
-    const currentTeam2 = JSON.parse(localStorage.getItem("pokemon-app-team"));
+    const currentTeam2 = JSON.parse(localStorage.getItem("pokemon-app-team")) || [];
     
     if (Array.isArray(currentTeam2)) {
       setTeam(currentTeam2);
