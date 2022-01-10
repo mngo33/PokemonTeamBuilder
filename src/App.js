@@ -20,7 +20,7 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [gen, setGen] = useState(genChecked);
   const [types, setTypes] = useState(typesChecked);
-  const [team, setTeam] = useState(JSON.parse(localStorage.getItem("pokemon-app-team")));
+  const [team, setTeam] = useState([]);
   
   const getSearchValue = (childData) => {
     setSearchValue(childData);
@@ -37,6 +37,18 @@ function App() {
   const getTeam = (childData) => {
     setTeam(childData);
   }
+
+  useEffect(() => {
+    const currentTeam2 = JSON.parse(localStorage.getItem("pokemon-app-team"));
+    
+    if (Array.isArray(currentTeam2)) {
+      setTeam(currentTeam2);
+    } else {
+      setTeam([])
+    }
+    //setTeam(currentTeam2);
+    //console.log(Array.isArray(currentTeam2));
+  }, []);
 
   return (
     <Router>

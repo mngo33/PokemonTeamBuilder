@@ -6,7 +6,7 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
   const [team, setTeam] = useState([]);
 
   const getAllPokemon = async () => {
-    const URL = "https://pokeapi.co/api/v2/pokemon?limit=721";
+    const URL = "https://pokeapi.co/api/v2/pokemon?limit=50";
 
     const response = await fetch(URL);
     const data = await response.json();
@@ -26,7 +26,14 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
 
   useEffect(() => {
     const currentTeam2 = JSON.parse(localStorage.getItem("pokemon-app-team"));
-    setTeam(currentTeam2);
+    
+    if (Array.isArray(currentTeam2)) {
+      setTeam(currentTeam2);
+    } else {
+      setTeam([])
+    }
+    //setTeam(currentTeam2);
+    //console.log(Array.isArray(currentTeam2));
   }, []);
 
   useEffect(() => {
@@ -126,6 +133,8 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
 
   return (
     <div>
+      {console.log(Array.isArray(team))}
+      {Array.isArray(team) && (
       <div className="row">
         {team.map((pokemon) => (
           <PokemonCard
@@ -139,6 +148,7 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
           />
         ))}
       </div>
+      )}
       <div className="divider"></div>
       <h1 className="header">All Pokemon</h1>
       <div className="row">
@@ -146,7 +156,7 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
           .sort((a, b) => (a.id > b.id ? 1 : -1))
           .map(
             (pokemon) =>
-              !team.some((pkmn) => pkmn["id"] == pokemon.id) &&
+              (Array.isArray(team) &&  !team.some((pkmn) => pkmn["id"] == pokemon.id)) &&
               pokemon.name.includes(searchValue) &&
               gen.includes(idToGen(pokemon.id)) &&
               findCommonElements3(typesToNumArray(pokemon.types)) && (
