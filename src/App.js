@@ -10,6 +10,9 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PokemonInfo from "./components/pokemon/PokemonInfo";
 import TeamAnalysis from "./components/other/TeamAnalysis";
+import FilterBar from "./components/layout/FilterBar";
+
+//import { GlobalProvider } from './context/GlobalState';
 
 function App() {
   const typesChecked = [
@@ -21,7 +24,7 @@ function App() {
   const [gen, setGen] = useState(genChecked);
   const [types, setTypes] = useState(typesChecked);
   const [team, setTeam] = useState([]);
-  
+
   const getSearchValue = (childData) => {
     setSearchValue(childData);
   };
@@ -36,18 +39,17 @@ function App() {
 
   const getTeam = (childData) => {
     setTeam(childData);
-  }
+  };
 
   useEffect(() => {
-    const currentTeam2 = JSON.parse(localStorage.getItem("pokemon-app-team")) || [];
-    
+    const currentTeam2 =
+      JSON.parse(localStorage.getItem("pokemon-app-team")) || [];
+
     if (Array.isArray(currentTeam2)) {
       setTeam(currentTeam2);
     } else {
-      setTeam([])
+      setTeam([]);
     }
-    //setTeam(currentTeam2);
-    //console.log(Array.isArray(currentTeam2));
   }, []);
 
   return (
@@ -64,40 +66,13 @@ function App() {
                   path="/"
                   element={
                     <div>
-                      <Row>
-                        <Col sm={3}>
-                          <h1>Team</h1>
-                        </Col>
-                        <Col sm={3} className="parent p-0 m-0 float-right">
-                          <Link
-                            className="try-right float-right"
-                            to={`team-analysis`}
-                          >
-                            <button className="btn btn-primary">
-                              Team Analysis
-                            </button>
-                          </Link>
-                        </Col>
-                        <Col sm={6} className="parent">
-                          <Col className="try-right">
-                            <CheckBox
-                              getFilters={getGen}
-                              filterType="Generation"
-                              checkedBoxes={genChecked}
-                            />
-                          </Col>
-                          <Col className="try-right">
-                            <CheckBox
-                              getFilters={getTypes}
-                              filterType="Type"
-                              checkedBoxes={typesChecked}
-                            />
-                          </Col>
-                          <Col className="try-right">
-                            <SearchBox getSearchValue={getSearchValue} />
-                          </Col>
-                        </Col>
-                      </Row>
+                      <FilterBar
+                        getGen={getGen}
+                        genChecked={genChecked}
+                        getTypes={getTypes}
+                        typesChecked={typesChecked}
+                        getSearchValue={getSearchValue}
+                      />
                       <PokemonList
                         searchValue={searchValue}
                         gen={gen}

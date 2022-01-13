@@ -29,8 +29,8 @@ const generations = [
   },
   {
     id: 7,
-    name: "Generation VII"
-  }
+    name: "Generation VII",
+  },
 ];
 
 const types = [
@@ -112,13 +112,16 @@ let allChecked = true;
 
 function CheckBox({ getFilters, filterType, checkedBoxes }) {
   let category = [];
+  let add = 0;
 
   const [checked, setChecked] = useState(checkedBoxes);
 
   if (filterType === "Generation") {
     category = generations;
+    add = 0;
   } else {
     category = types;
+    add = 20;
   }
 
   const handleToggle = (element) => {
@@ -152,8 +155,8 @@ function CheckBox({ getFilters, filterType, checkedBoxes }) {
 
   return (
     <div>
-      <Dropdown >
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown>
+        <Dropdown.Toggle variant="success" className="filter-button dropdown-button">
           {filterType}
         </Dropdown.Toggle>
 
@@ -161,17 +164,17 @@ function CheckBox({ getFilters, filterType, checkedBoxes }) {
           <Form>
             <Form.Check
               type="checkbox"
-              id="check-all"
+              id={`check-all${add}`}
               label="Select All"
               onChange={() => handleAllChecked()}
               checked={allChecked}
               className="mb-3"
             />
             {category.map((element) => (
-              <div key={element.id} className="mb-3">
+              <div key={element.id + add} className="mb-3">
                 <Form.Check
                   type="checkbox"
-                  id={element.id}
+                  id={element.id + add}
                   label={element.name}
                   onChange={() => handleToggle(element.id)}
                   checked={checked.indexOf(element.id) === -1 ? false : true}

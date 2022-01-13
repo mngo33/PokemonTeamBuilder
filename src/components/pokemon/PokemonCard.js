@@ -37,17 +37,17 @@ const PokemonCard = (props) => {
             className="btn poke-btn"
             onClick={() => props.handleClick(pokemon)}
           >
-            {imageLoading ? (
+            {/* {imageLoading ? (
               <img
                 src={pokeballSprite}
                 style={{ width: "6rem", height: "6rem" }}
                 className="pokeball"
               ></img>
-            ) : null}
+            ) : null} */}
             <img
               className="poke-card"
               src={image}
-              onLoad={() => setImageLoading(false)}
+              // onLoad={() => setImageLoading(false)}
             />
           </div>
         </Col>

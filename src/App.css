@@ -64,17 +64,22 @@
   justify-content: center;
 }
 
-.try-right {
+/* .try-right {
   display: flex;
   justify-content: end;
   padding: 0;
   margin-left: 1rem;
+} */
+
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .parent {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .child {
@@ -90,9 +95,27 @@
   float: right;
 }
 
-#dropdown-basic {
+.team-analysis {
+  background-color: #a73533 !important;
+  color: white;
+}
+
+.filter-button:hover {
+  color: white !important;
+  background-color: #ef5350 !important;
+}
+
+.team-analysis-text {
+  white-space: nowrap;
+}
+
+.dropdown-button {
   background-color: #a73533 !important;
   border: 0;
+}
+
+.team-header {
+  margin-bottom: 0 !important;
 }
 
 @keyframes jump {

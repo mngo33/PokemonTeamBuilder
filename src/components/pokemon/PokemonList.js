@@ -6,7 +6,7 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
   const [team, setTeam] = useState([]);
 
   const getAllPokemon = async () => {
-    const URL = "https://pokeapi.co/api/v2/pokemon?limit=50";
+    const URL = "https://pokeapi.co/api/v2/pokemon?limit=721";
 
     const response = await fetch(URL);
     const data = await response.json();
@@ -50,7 +50,10 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
       const newTeam = [...team, pokemon];
       setTeam(newTeam);
       saveToLocal(newTeam);
+    } else {
+      window.alert("Max. 6 Pokemon!");
     }
+    //console.log(team);
   };
 
   const removeFromTeam = (pokemon) => {
@@ -133,7 +136,6 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
 
   return (
     <div>
-      {console.log(Array.isArray(team))}
       {Array.isArray(team) && (
       <div className="row">
         {team.map((pokemon) => (
@@ -151,6 +153,7 @@ function PokemonList({ searchValue, gen, types, getTeam }) {
       )}
       <div className="divider"></div>
       <h1 className="header">All Pokemon</h1>
+      <hr/>
       <div className="row">
         {allPokemon
           .sort((a, b) => (a.id > b.id ? 1 : -1))
