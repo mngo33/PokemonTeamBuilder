@@ -3,16 +3,10 @@ import "./App.css";
 import NavBar from "./components/layout/NavBar";
 import PokemonList from "./components/pokemon/PokemonList";
 import React, { useState, useEffect } from "react";
-import CheckBox from "./components/layout/CheckBox";
-import SearchBox from "./components/layout/SearchBox";
-import { Col, Container, Row } from "react-bootstrap";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import { Link } from "react-router-dom";
 import PokemonInfo from "./components/pokemon/PokemonInfo";
 import TeamAnalysis from "./components/other/TeamAnalysis";
 import FilterBar from "./components/layout/FilterBar";
-
-//import { GlobalProvider } from './context/GlobalState';
 
 function App() {
   const typesChecked = [

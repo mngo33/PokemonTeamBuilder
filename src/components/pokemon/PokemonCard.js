@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Col } from "react-bootstrap"
+import { Col } from "react-bootstrap"
 import pokeballSprite from "../pokemon/pokeball-sprite.png";
 import { Link } from "react-router-dom";
 
@@ -8,8 +8,6 @@ const PokemonCard = (props) => {
   const [name, setName] = useState("");
   const [pokemon, setPokemon] = useState([]);
   const [id, setId] = useState("");
-  const [onTeam, setOnTeam] = useState(true);
-  const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
     const imageURL = props.imageURL;
@@ -21,12 +19,9 @@ const PokemonCard = (props) => {
     const pokemon = props.pokemon;
     setPokemon(pokemon);
 
-    const onTeam = props.onTeam;
-    setOnTeam(onTeam);
-
     const id = props.id;
     setId(id);
-  }, []);
+  }, [props]);
 
   return (
     <div className="">
@@ -47,6 +42,7 @@ const PokemonCard = (props) => {
             <img
               className="poke-card"
               src={image}
+              alt={name}
               // onLoad={() => setImageLoading(false)}
             />
           </div>
